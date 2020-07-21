@@ -28,6 +28,7 @@ SECRET_KEY = '#y3&73krx*#^!md!*&o77+f_yk*)9d)f=4io7axrlerh(%^9hq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = []
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'crispy_forms',
     'blog',
 ]
@@ -124,3 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
