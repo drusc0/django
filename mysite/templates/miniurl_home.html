@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6 card mb-4 mt-3">
+            <div class="card-body">
+                <h3>Mini Url (URL Shortening System)</h3>
+                {% load crispy_forms_tags %}
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ miniurl_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <table class="table">
+                <thead><tr>
+                    <th scope="col">Original URL</th>
+                    <th scope="col">Short URL</th>
+                </tr></thead>
+                <tbody>
+                    {% for url in miniurls %}
+                    <tr>
+                        <td>{{url.original_url}}</td>
+                        <td>{{url.short_url}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock content %}
