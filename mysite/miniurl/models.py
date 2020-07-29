@@ -1,9 +1,10 @@
 from django.db import models
 
 STATUS = (
-        (0, "Inactive"),
-        (1, "Active")
+    (0, "Inactive"),
+    (1, "Active")
 )
+
 
 # we will create the necessary model for tiny url system
 class Miniurl(models.Model):
@@ -18,4 +19,3 @@ class Miniurl(models.Model):
 
     def __str__(self):
         return f"{self.original_url} -> {self.short_url}"
-

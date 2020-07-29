@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect, get_list_or_404
-from .models import Miniurl
+from django.http import Http404
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods, require_GET
+
 from .forms import MiniurlForm
-#from .utils import get_random_alphnum
+from .models import Miniurl
 
 
+# from .utils import get_random_alphnum
+
+@require_http_methods(["GET", "POST"])
 def miniurl_home(request):
     template = 'miniurl_home.html'
 
@@ -16,14 +21,15 @@ def miniurl_home(request):
         miniurl_form = MiniurlForm()
 
     miniurls = Miniurl.objects.order_by('-created_on')[:10]
-    print(miniurls)
+
     return render(request, template, {'miniurls': miniurls, 'miniurl_form': miniurl_form})
 
+
+@require_GET
 def get_url(request, short):
-    miniurl = Miniurl.objects.get(short_url=short)
-    if miniurl is None or not miniurl:
-        print("Nothing to retrieve")
-
-    print("miniurl: ", miniurl)
-    return redirect(miniurl.original_url)
-
+    try:
+        miniurl = Miniurl.objects.get(short_url=short)
+        print(miniurl)
+        return redirect(miniurl.original_url)
+    except Miniurl.DoesNotExist:
+        raise Http404("Miniurl object: {} does not exist".format(short))
