@@ -23,6 +23,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('miniurl/', include('miniurl.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('notebook', include('notebook.urls')),
 ]
 
 if settings.DEBUG:

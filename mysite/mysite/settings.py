@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_summernote',
+    'django_tables2',
+    'tinymce',
     'crispy_forms',
     'blog',
     'miniurl',
@@ -129,4 +131,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': 'spellchecker,paste,searchreplace',
+    'theme': 'advanced',
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'width': '100%',
+    'height': '400px',
+}
+
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = True
 
